@@ -1,0 +1,8 @@
+- name: latest
+  type: push
+  tag: dev
+  service: latest
+  registry: https://index.docker.io/v1/
+  image_name: antistatique/deploy
+  image_tag: latest
+  encrypted_dockercfg_path: docker.cfg.enc

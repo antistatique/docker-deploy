@@ -1,0 +1,4 @@
+latest:
+  image_name: antistatique/deploy
+  build: .
+  cached: true

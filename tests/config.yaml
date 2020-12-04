@@ -1,0 +1,29 @@
+schemaVersion: '2.0.0'
+metadataTest:
+  workdir: '/app'
+  entrypoint: [ "/root/entrypoint.sh" ]
+commandTests:
+  - name: "ssh"
+    command: "which"
+    args: ["ssh"]
+    expectedOutput: ["/usr/bin/ssh"]
+  - name: "Unzip"
+    command: "which"
+    args: ["unzip"]
+    expectedOutput: ["/usr/bin/unzip"]
+  - name: "Ruby"
+    command: "which"
+    args: ["ruby"]
+    expectedOutput: ["/usr/local/bin/ruby"]
+  - name: "Bundle"
+    command: "which"
+    args: ["bundle"]
+    expectedOutput: ["/usr/local/bundle/bin/bundle"]
+  - name: "Ruby Version"
+    command: "ruby"
+    args: ["-v"]
+    expectedOutput: ['^ruby 2\.\d+']
+  - name: "Bundle Version"
+    command: "bundle"
+    args: ["-v"]
+    expectedOutput: ['^Bundler version 2\.\d+\.\d+']

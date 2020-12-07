@@ -1,0 +1,20 @@
+name: "Test Dockerfile structure"
+on: pull_request
+
+jobs:
+  dockerfile-php-only-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version: ['latest']
+
+    steps:
+      - name: checkout source
+        uses: actions/checkout@master
+      - name: Install Google Container Structure Test Framework
+        run: curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
+      - name: Build docker image
+        run: docker build -t antistatique/deploy:latest .
+      - name: Run tests
+        run: container-structure-test test --image antistatique/deploy:latest --config ./tests/config.yaml
